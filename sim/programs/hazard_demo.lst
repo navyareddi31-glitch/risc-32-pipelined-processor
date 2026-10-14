@@ -1,0 +1,22 @@
+0000: 00500093  li   x1, 5
+0004: 00308113  addi x2, x1, 3          # EX->EX forwarding   (x1)
+0008: 001101b3  add  x3, x2, x1         # EX->EX (x2) + MEM->EX (x1)
+000c: 00302023  sw   x3, 0(x0)
+0010: 00002203  lw   x4, 0(x0)
+0014: 004202b3  add  x5, x4, x4         # load-use -> 1 stall cycle
+0018: 0080006f  jal  x0, skip           # JAL: 1 bubble
+001c: 06300293  li   x5, 99             # skipped
+0020: 00300313  skip:   li   x6, 3
+0024: fff30313  cnt:    addi x6, x6, -1
+0028: fe031ee3  bnez x6, cnt            # loop branch: mispredicts initially, then learns
+002c: 00000397  auipc x7, 0
+0030: 00c38067  jalr x0, 12(x7)         # JALR: 2 bubbles
+0034: 04d00293  li   x5, 77             # skipped
+0038: 01a00413  li   x8, 26
+003c: 00006fb7  li   x31, 0x600D
+0040: 00df8f93  li   x31, 0x600D
+0044: 00829463  bne  x5, x8, bad
+0048: 00c0006f  j    done
+004c: 00001fb7  bad:    li   x31, 0xBAD
+0050: badf8f93  bad:    li   x31, 0xBAD
+0054: 00000073  done:   ecall

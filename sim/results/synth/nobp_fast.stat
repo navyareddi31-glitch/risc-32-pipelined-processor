@@ -1,0 +1,72 @@
+
+15. Printing statistics.
+
+=== riscv32_pipeline ===
+
+   Number of wires:               8901
+   Number of wire bits:          11934
+   Number of public wires:         273
+   Number of public wire bits:    3306
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:               8631
+     $paramod\data_memory\WORDS=s32'00000000000000000000000100000000      1
+     $paramod\instruction_memory\WORDS=s32'00000000000000000000000100000000      1
+     AND2_X1                       225
+     AND2_X2                         2
+     AND3_X1                        23
+     AND3_X2                         2
+     AND4_X1                         4
+     AOI211_X1                      91
+     AOI211_X2                       3
+     AOI21_X1                      302
+     AOI21_X2                       11
+     AOI221_X1                      20
+     AOI222_X1                       1
+     AOI22_X1                       24
+     BUF_X1                        359
+     BUF_X2                          3
+     BUF_X4                          1
+     CLKBUF_X1                      73
+     DFF_X1                       1438
+     INV_X1                        429
+     MUX2_X1                      1787
+     MUX2_X2                         1
+     NAND2_X1                      842
+     NAND2_X2                        3
+     NAND3_X1                      251
+     NAND3_X2                        2
+     NAND4_X1                       14
+     NOR2_X1                       540
+     NOR2_X2                         2
+     NOR3_X1                        56
+     NOR3_X2                         1
+     NOR3_X4                         2
+     NOR4_X1                        11
+     NOR4_X2                         1
+     NOR4_X4                         3
+     OAI211_X1                    1064
+     OAI211_X2                       1
+     OAI21_X1                      604
+     OAI21_X2                        6
+     OAI21_X4                        2
+     OAI221_X1                      34
+     OAI222_X1                       1
+     OAI22_X1                       23
+     OAI33_X1                        1
+     OR2_X1                         56
+     OR3_X1                         18
+     OR3_X4                          1
+     OR4_X1                          3
+     OR4_X4                          1
+     XNOR2_X1                      197
+     XNOR2_X2                        3
+     XOR2_X1                        85
+     XOR2_X2                         2
+
+   Area for cell type $paramod\instruction_memory\WORDS=s32'00000000000000000000000100000000 is unknown!
+   Area for cell type $paramod\data_memory\WORDS=s32'00000000000000000000000100000000 is unknown!
+
+   Chip area for module '\riscv32_pipeline': 15452.472000
+

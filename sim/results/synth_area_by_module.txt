@@ -1,0 +1,11 @@
+branch_predictor           1619 um^2
+hazard_unit                  81 um^2
+alu                        1284 um^2
+control_unit                128 um^2
+ex_mem_reg                 1079 um^2
+id_ex_reg                   941 um^2
+if_id_reg                   493 um^2
+mem_wb_reg                 1029 um^2
+program_counter             242 um^2
+register_file             10309 um^2
+riscv32_pipeline           1442 um^2

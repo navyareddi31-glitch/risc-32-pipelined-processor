@@ -1,0 +1,5 @@
+WARNING: rtl/instruction_memory.v:28: $readmemh(sim/programs/bubble_sort.hex): Not enough words in the file for the requested range [0:255].
+RESULT: PASS
+STATS fwd=0 bp=0 cycles=2843 instrs=1204 cpi=2.361 ipc=0.423 stalls=1216 ex_flush=209 id_flush=1 branches=287 taken=209 mispred=209 jal=1 jalr=0 loads=250 stores=96 ctrl_bubbles=419
+CYCLE-ACCOUNTING: OK
+tb/tb_riscv32_pipeline.v:83: $finish called at 28456000 (1ps)

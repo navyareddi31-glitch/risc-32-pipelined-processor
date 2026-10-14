@@ -1,0 +1,5 @@
+WARNING: rtl/instruction_memory.v:28: $readmemh(sim/programs/hazard_demo.hex): Not enough words in the file for the requested range [0:255].
+RESULT: PASS
+STATS fwd=1 bp=1 cycles=36 instrs=22 cpi=1.636 ipc=0.611 stalls=1 ex_flush=3 id_flush=4 branches=4 taken=2 mispred=2 jal=2 jalr=1 loads=1 stores=1 ctrl_bubbles=9
+CYCLE-ACCOUNTING: OK
+tb/tb_riscv32_pipeline.v:83: $finish called at 386000 (1ps)

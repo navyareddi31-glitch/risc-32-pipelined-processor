@@ -1,0 +1,5 @@
+WARNING: rtl/instruction_memory.v:28: $readmemh(sim/programs/array_sum.hex): Not enough words in the file for the requested range [0:255].
+RESULT: PASS
+STATS fwd=0 bp=1 cycles=1372 instrs=588 cpi=2.333 ipc=0.429 stalls=678 ex_flush=5 id_flush=94 branches=97 taken=95 mispred=5 jal=0 jalr=0 loads=48 stores=48 ctrl_bubbles=102
+CYCLE-ACCOUNTING: OK
+tb/tb_riscv32_pipeline.v:83: $finish called at 13746000 (1ps)

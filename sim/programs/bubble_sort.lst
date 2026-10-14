@@ -1,0 +1,44 @@
+0000: 00000513  li   x10, 0             # base address
+0004: 01000593  li   x11, 16            # n
+0008: 00000093  li   x1, 0
+000c: 02500113  li   x2, 37             # LCG-ish data: v = (v*5 + 17) & 0xFF
+0010: 00209193  fill:   slli x3, x1, 2
+0014: 00a181b3  add  x3, x3, x10
+0018: 0021a023  sw   x2, 0(x3)
+001c: 00211213  slli x4, x2, 2
+0020: 00410133  add  x2, x2, x4         # v*5
+0024: 01110113  addi x2, x2, 17
+0028: 0ff17113  andi x2, x2, 0xFF
+002c: 00108093  addi x1, x1, 1
+0030: feb0c0e3  blt  x1, x11, fill
+0034: fff58613  addi x12, x11, -1       # outer = n-1
+0038: 00000093  outer:  li   x1, 0              # j
+003c: 00000693  li   x13, 0             # swapped?
+0040: 00209193  inner:  slli x3, x1, 2
+0044: 00a181b3  add  x3, x3, x10
+0048: 0001a203  lw   x4, 0(x3)
+004c: 0041a283  lw   x5, 4(x3)
+0050: 0042d863  ble  x4, x5, noswap     # data-dependent branch
+0054: 0051a023  sw   x5, 0(x3)
+0058: 0041a223  sw   x4, 4(x3)
+005c: 00100693  li   x13, 1
+0060: 00108093  noswap: addi x1, x1, 1
+0064: fcc0cee3  blt  x1, x12, inner
+0068: fff60613  addi x12, x12, -1
+006c: 00068463  beqz x13, check
+0070: fcc044e3  bgtz x12, outer
+0074: 00000093  check:  li   x1, 0
+0078: fff58613  addi x12, x11, -1
+007c: 00006fb7  li   x31, 0x600D
+0080: 00df8f93  li   x31, 0x600D
+0084: 00209193  chk:    slli x3, x1, 2
+0088: 00a181b3  add  x3, x3, x10
+008c: 0001a203  lw   x4, 0(x3)
+0090: 0041a283  lw   x5, 4(x3)
+0094: 0042c863  bgt  x4, x5, bad
+0098: 00108093  addi x1, x1, 1
+009c: fec0c4e3  blt  x1, x12, chk
+00a0: 00c0006f  j    done
+00a4: 00001fb7  bad:    li   x31, 0xBAD
+00a8: badf8f93  bad:    li   x31, 0xBAD
+00ac: 00000073  done:   ecall

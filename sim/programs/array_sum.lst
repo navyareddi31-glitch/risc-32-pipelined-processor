@@ -1,0 +1,26 @@
+0000: 00000513  li   x10, 0             # base
+0004: 03000593  li   x11, 48            # count
+0008: 00000093  li   x1, 0              # i
+000c: 00100113  li   x2, 1              # value
+0010: 00209193  fill:   slli x3, x1, 2
+0014: 00a181b3  add  x3, x3, x10
+0018: 0021a023  sw   x2, 0(x3)
+001c: 00310113  addi x2, x2, 3
+0020: 00108093  addi x1, x1, 1
+0024: feb0c6e3  blt  x1, x11, fill
+0028: 00000093  li   x1, 0
+002c: 00000213  li   x4, 0              # sum
+0030: 00209193  sumlp:  slli x3, x1, 2
+0034: 00a181b3  add  x3, x3, x10
+0038: 0001a283  lw   x5, 0(x3)
+003c: 00520233  add  x4, x4, x5         # load-use dependency
+0040: 00108093  addi x1, x1, 1
+0044: feb0c6e3  blt  x1, x11, sumlp
+0048: 00001337  li   x6, 3432
+004c: d6830313  li   x6, 3432
+0050: 00006fb7  li   x31, 0x600D
+0054: 00df8f93  li   x31, 0x600D
+0058: 00620663  beq  x4, x6, done
+005c: 00001fb7  li   x31, 0xBAD
+0060: badf8f93  li   x31, 0xBAD
+0064: 00000073  done:   ecall

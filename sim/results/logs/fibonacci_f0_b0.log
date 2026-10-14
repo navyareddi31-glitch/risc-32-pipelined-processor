@@ -1,0 +1,5 @@
+WARNING: rtl/instruction_memory.v:28: $readmemh(sim/programs/fibonacci.hex): Not enough words in the file for the requested range [0:255].
+RESULT: PASS
+STATS fwd=0 bp=0 cycles=218 instrs=109 cpi=2.000 ipc=0.500 stalls=65 ex_flush=20 id_flush=0 branches=21 taken=20 mispred=20 jal=0 jalr=0 loads=0 stores=0 ctrl_bubbles=40
+CYCLE-ACCOUNTING: OK
+tb/tb_riscv32_pipeline.v:83: $finish called at 2206000 (1ps)

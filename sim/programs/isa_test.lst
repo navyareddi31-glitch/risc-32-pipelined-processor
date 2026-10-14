@@ -1,0 +1,226 @@
+0000: 00100f13  li   x30, 1              # LUI
+0004: 123450b7  lui  x1, 0x12345
+0008: 12345137  li   x2, 0x12345000
+000c: 36209863  bne  x1, x2, fail
+0010: 00200f13  li   x30, 2              # AUIPC
+0014: 00000097  auipc x1, 0
+0018: 00000117  auipc x2, 0
+001c: 401101b3  sub  x3, x2, x1
+0020: 00400213  li   x4, 4
+0024: 34419c63  bne  x3, x4, fail
+0028: 00300f13  li   x30, 3              # ADDI
+002c: 06400093  li   x1, 100
+0030: fe208113  addi x2, x1, -30
+0034: 04600193  li   x3, 70
+0038: 34311263  bne  x2, x3, fail
+003c: 00400f13  li   x30, 4              # SLTI / SLTIU
+0040: ffb00093  li   x1, -5
+0044: 0030a113  slti x2, x1, 3
+0048: ffa0a193  slti x3, x1, -6
+004c: 0050b213  sltiu x4, x1, 5
+0050: 00503293  sltiu x5, x0, 5
+0054: 00100313  li   x6, 1
+0058: 32611263  bne  x2, x6, fail
+005c: 32019063  bne  x3, x0, fail
+0060: 30021e63  bne  x4, x0, fail
+0064: 30629c63  bne  x5, x6, fail
+0068: 00500f13  li   x30, 5              # XORI / ORI / ANDI
+006c: 000010b7  li   x1, 0xF0F
+0070: f0f08093  li   x1, 0xF0F
+0074: 0ff0c113  xori x2, x1, 0x0FF
+0078: 0f00e193  ori  x3, x1, 0x0F0
+007c: 0ff0f213  andi x4, x1, 0x0FF
+0080: 000012b7  li   x5, 0xFF0
+0084: ff028293  li   x5, 0xFF0
+0088: 2e511a63  bne  x2, x5, fail
+008c: 000012b7  li   x5, 0xFFF
+0090: fff28293  li   x5, 0xFFF
+0094: 2e519463  bne  x3, x5, fail
+0098: 00f00293  li   x5, 0x00F
+009c: 2e521063  bne  x4, x5, fail
+00a0: 00600f13  li   x30, 6              # SLLI / SRLI / SRAI
+00a4: 800000b7  li   x1, 0x80000001
+00a8: 00108093  li   x1, 0x80000001
+00ac: 00409113  slli x2, x1, 4
+00b0: 0040d193  srli x3, x1, 4
+00b4: 4040d213  srai x4, x1, 4
+00b8: 01000293  li   x5, 0x10
+00bc: 2c511063  bne  x2, x5, fail
+00c0: 080002b7  li   x5, 0x08000000
+00c4: 2a519c63  bne  x3, x5, fail
+00c8: f80002b7  li   x5, 0xF8000000
+00cc: 2a521863  bne  x4, x5, fail
+00d0: 00700f13  li   x30, 7              # register-register ALU
+00d4: 00f00093  li   x1, 15
+00d8: ffc00113  li   x2, -4
+00dc: 00300313  li   x6, 3
+00e0: 002081b3  add  x3, x1, x2
+00e4: 40208233  sub  x4, x1, x2
+00e8: 0020f2b3  and  x5, x1, x2
+00ec: 00b00393  li   x7, 11
+00f0: 28719663  bne  x3, x7, fail
+00f4: 01300393  li   x7, 19
+00f8: 28721263  bne  x4, x7, fail
+00fc: 00c00393  li   x7, 12
+0100: 26729e63  bne  x5, x7, fail
+0104: 0020e1b3  or   x3, x1, x2
+0108: 0020c233  xor  x4, x1, x2
+010c: fff00393  li   x7, -1
+0110: 26719663  bne  x3, x7, fail
+0114: ff300393  li   x7, 0xFFFFFFF3
+0118: 26721263  bne  x4, x7, fail
+011c: 0020a1b3  slt  x3, x1, x2
+0120: 0020b233  sltu x4, x1, x2
+0124: 24019c63  bne  x3, x0, fail
+0128: 00100393  li   x7, 1
+012c: 24721863  bne  x4, x7, fail
+0130: 006091b3  sll  x3, x1, x6
+0134: 00615233  srl  x4, x2, x6
+0138: 406152b3  sra  x5, x2, x6
+013c: 07800393  li   x7, 120
+0140: 22719e63  bne  x3, x7, fail
+0144: 200003b7  li   x7, 0x1FFFFFFF
+0148: fff38393  li   x7, 0x1FFFFFFF
+014c: 22721863  bne  x4, x7, fail
+0150: fff00393  li   x7, -1
+0154: 22729463  bne  x5, x7, fail
+0158: 00800f13  li   x30, 8              # x0 is hard-wired to zero
+015c: 00700013  addi x0, x0, 7
+0160: 00000113  mv   x2, x0
+0164: 20011c63  bnez x2, fail
+0168: 00210033  add  x0, x2, x2
+016c: 00001037  lui  x0, 0x1
+0170: 20001663  bnez x0, fail
+0174: 00900f13  li   x30, 9              # loads / stores of every width
+0178: 01000513  li   x10, 16
+017c: 80ff80b7  li   x1, 0x80FF7F01
+0180: f0108093  li   x1, 0x80FF7F01
+0184: 00152023  sw   x1, 0(x10)
+0188: 00052103  lw   x2, 0(x10)
+018c: 1e111863  bne  x2, x1, fail
+0190: 00050183  lb   x3, 0(x10)
+0194: 00100393  li   x7, 1
+0198: 1e719263  bne  x3, x7, fail
+019c: 00150203  lb   x4, 1(x10)
+01a0: 07f00393  li   x7, 0x7F
+01a4: 1c721c63  bne  x4, x7, fail
+01a8: 00250283  lb   x5, 2(x10)
+01ac: fff00393  li   x7, -1
+01b0: 1c729663  bne  x5, x7, fail
+01b4: 00350303  lb   x6, 3(x10)
+01b8: f8000393  li   x7, 0xFFFFFF80
+01bc: 1c731063  bne  x6, x7, fail
+01c0: 00354403  lbu  x8, 3(x10)
+01c4: 08000393  li   x7, 0x80
+01c8: 1a741a63  bne  x8, x7, fail
+01cc: 00051403  lh   x8, 0(x10)
+01d0: 000083b7  li   x7, 0x7F01
+01d4: f0138393  li   x7, 0x7F01
+01d8: 1a741263  bne  x8, x7, fail
+01dc: 00251483  lh   x9, 2(x10)
+01e0: ffff83b7  li   x7, 0xFFFF80FF
+01e4: 0ff38393  li   x7, 0xFFFF80FF
+01e8: 18749a63  bne  x9, x7, fail
+01ec: 00255583  lhu  x11, 2(x10)
+01f0: 000083b7  li   x7, 0x80FF
+01f4: 0ff38393  li   x7, 0x80FF
+01f8: 18759263  bne  x11, x7, fail
+01fc: 0ab00613  li   x12, 0xAB
+0200: 00c502a3  sb   x12, 5(x10)
+0204: 0000c6b7  li   x13, 0xBEEF
+0208: eef68693  li   x13, 0xBEEF
+020c: 00d51523  sh   x13, 10(x10)
+0210: 00452703  lw   x14, 4(x10)
+0214: 0000b3b7  li   x7, 0xAB00
+0218: b0038393  li   x7, 0xAB00
+021c: 16771063  bne  x14, x7, fail
+0220: 00852783  lw   x15, 8(x10)
+0224: beef03b7  li   x7, 0xBEEF0000
+0228: 14779a63  bne  x15, x7, fail
+022c: 00a00f13  li   x30, 10             # conditional branches (taken and not taken)
+0230: 00500093  li   x1, 5
+0234: 00500113  li   x2, 5
+0238: fff00193  li   x3, -1
+023c: 00208463  beq  x1, x2, b1
+0240: 13c0006f  j    fail
+0244: 12209c63  b1:     bne  x1, x2, fail
+0248: 0011c463  blt  x3, x1, b2
+024c: 1300006f  j    fail
+0250: 1211e663  b2:     bltu x3, x1, fail
+0254: 0030d463  bge  x1, x3, b3
+0258: 1240006f  j    fail
+025c: 0011f463  b3:     bgeu x3, x1, b4
+0260: 11c0006f  j    fail
+0264: 1011dc63  b4:     bge  x3, x1, fail
+0268: 1030ca63  blt  x1, x3, fail
+026c: 1030f863  bgeu x1, x3, fail
+0270: 0030e463  bltu x1, x3, b5
+0274: 1080006f  j    fail
+0278: 0020d463  b5:     bge  x1, x2, b6           # equal -> taken
+027c: 1000006f  j    fail
+0280: 0e20ce63  b6:     blt  x1, x2, fail         # equal -> not taken
+0284: 00b00f13  li   x30, 11             # JAL / JALR and link values
+0288: 00000117  auipc x2, 0
+028c: 008000ef  jal  x1, j1
+0290: 0ec0006f  j    fail
+0294: 00810193  j1:     addi x3, x2, 8
+0298: 0e309263  bne  x1, x3, fail
+029c: 00000217  auipc x4, 0
+02a0: 00d20367  jalr x6, 13(x4)           # target = (x4+13)&~1 = x4+12
+02a4: 0d80006f  j    fail
+02a8: 00820393  addi x7, x4, 8
+02ac: 0c731863  bne  x6, x7, fail
+02b0: 00c00f13  li   x30, 12             # EX->EX and MEM->EX forwarding
+02b4: 00100093  li   x1, 1
+02b8: 00108133  add  x2, x1, x1
+02bc: 002101b3  add  x3, x2, x2
+02c0: 00318233  add  x4, x3, x3
+02c4: 001202b3  add  x5, x4, x1
+02c8: 00900393  li   x7, 9
+02cc: 0a729863  bne  x5, x7, fail
+02d0: 00800393  li   x7, 8
+02d4: 0a721463  bne  x4, x7, fail
+02d8: 00300093  li   x1, 3
+02dc: 00108113  addi x2, x1, 1
+02e0: 00900313  addi x6, x0, 9
+02e4: 001101b3  add  x3, x2, x1
+02e8: 00700393  li   x7, 7
+02ec: 08719863  bne  x3, x7, fail
+02f0: 00d00f13  li   x30, 13             # load-use hazard, store-data and branch forwarding
+02f4: 04000513  li   x10, 64
+02f8: 01500093  li   x1, 21
+02fc: 00152023  sw   x1, 0(x10)
+0300: 00052103  lw   x2, 0(x10)
+0304: 002101b3  add  x3, x2, x2
+0308: 02a00393  li   x7, 42
+030c: 06719863  bne  x3, x7, fail
+0310: 00052203  lw   x4, 0(x10)
+0314: 00452223  sw   x4, 4(x10)           # store data comes from the load
+0318: 00452283  lw   x5, 4(x10)
+031c: 06129063  bne  x5, x1, fail
+0320: 00052303  lw   x6, 0(x10)
+0324: 00130463  beq  x6, x1, lu1          # branch operand comes from the load
+0328: 0540006f  j    fail
+032c: 00700413  lu1:    addi x8, x0, 7
+0330: 00700493  addi x9, x0, 7
+0334: 00940463  beq  x8, x9, lu2          # both branch operands forwarded
+0338: 0440006f  j    fail
+033c: 00052583  lu2:    lw   x11, 0(x10)
+0340: 00052603  lw   x12, 0(x10)
+0344: 00c586b3  add  x13, x11, x12        # one load in WB, one in MEM
+0348: 02a00393  li   x7, 42
+034c: 02769863  bne  x13, x7, fail
+0350: 00e00f13  li   x30, 14             # loop: sum 1..10 (branch predictor warm-up)
+0354: 00000093  li   x1, 0
+0358: 00a00113  li   x2, 10
+035c: 002080b3  loop1:  add  x1, x1, x2
+0360: fff10113  addi x2, x2, -1
+0364: fe011ce3  bnez x2, loop1
+0368: 03700393  li   x7, 55
+036c: 00709863  bne  x1, x7, fail
+0370: 00006fb7  li   x31, 0x600D
+0374: 00df8f93  li   x31, 0x600D
+0378: 00000073  ecall
+037c: 00001fb7  fail:   li   x31, 0xBAD
+0380: badf8f93  fail:   li   x31, 0xBAD
+0384: 00000073  ecall
